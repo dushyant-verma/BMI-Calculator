@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+</head>
+<body>
+    
+
+<h1> BMI calculator </h1>
+
+<div class="input-container">
+
+<label for="height">Height (cm):</label>
+<input type="number" placeholder="Enter your height" id="height">
+<label for="weight" > Weight (kg): </label>
+<input type="number" placeholder="Enter your weight" id="weight">
+</div>
+
+<button id="calculate-btn">  Calculate BMI</button>
+<div id="result"></div>
+
+
+<script>
+
+//  Get all the elements of an html page
+
+const heightInput = document.getElementById('height');
+const weightInput = document.getElementById('weight');
+const calculateButton = document.getElementById('calculate-btn');
+const resultDiv = document.getElementById('result');
+
+
+calculateButton.addEventListener('click', ()=>{
+
+    const height = parseFloat(heightInput.value);
+    const weight = parseFloat(weightInput.value);
+
+
+
+//  condition used for invalid input by user 
+
+
+if (isNaN(height)  || isNaN(weight) ){
+    resultDiv.textContent = " please enter a valid number for height and weight";
+    return;
+}
+
+
+// main calculation of BMI
+const bmi = weight /(height / 100) ** 2;
+
+
+
+// Display result with interpretation
+resultDiv.innerHTML = `
+
+<p> Your BMI is: ${bmi.toFixed(2)} </p>
+<p> Interpretation:</p>
+
+<ul>
+    <li> Underweight: Below 18.5</li>
+    <li>Normal weight: 18.5 - 24.9 </li>
+    <li>Overweight: 25 - 29.9</li>
+    <li>Obese: 30 or higher </li>
+    </ul>
+
+`;
+
+
+
+
+}
+);
+
+</script>
+
+</body>
+</html>
